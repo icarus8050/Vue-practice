@@ -2,17 +2,16 @@
 
 <div id="app">
   <div class="demo" 
-        @mouseover="attachedRed = !attachedRed"
-        @mouseout="attachedRed = !attachedRed"
-        :class="{red: attachedRed}"></div>
-  <div class="demo"
-        @mouseover="attachedGreen = !attachedGreen"
-        @mouseout="attachedGreen = !attachedGreen"
-        :class="{green: attachedGreen}"></div>
-  <div class="demo"
-        @mouseover="attachedBlue = !attachedBlue"
-        @mouseout="attachedBlue = !attachedBlue"
-        :class="{blue: attachedBlue}"></div>
+    @click="attachedRed = !attachedRed"
+    :class="divClasses"></div>
+
+    <div class="demo" 
+    :class="{red: attachedRed}"></div>
+
+    <div class="demo" :class="[color, {red: attachedRed}]"></div>
+
+    <hr>
+    <input type="text" v-model="color">
 </div>
 
 <script>
@@ -20,9 +19,16 @@
         el: '#app',
         data: {
             attachedRed: false,
-            attachedGreen: false,
-            attachedBlue: false
-        }
+            color: 'green'
+        },
+        computed: {
+            divClasses: function() {
+                return {
+                    red: this.attachedRed,
+                    blue: !this.attachedRed
+                };
+            }
+        },
     });
 </script>
 
