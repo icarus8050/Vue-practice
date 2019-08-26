@@ -1,0 +1,49 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+  <div class="demo" 
+        @mouseover="attachedRed = !attachedRed"
+        @mouseout="attachedRed = !attachedRed"
+        :class="{red: attachedRed}"></div>
+  <div class="demo"
+        @mouseover="attachedGreen = !attachedGreen"
+        @mouseout="attachedGreen = !attachedGreen"
+        :class="{green: attachedGreen}"></div>
+  <div class="demo"
+        @mouseover="attachedBlue = !attachedBlue"
+        @mouseout="attachedBlue = !attachedBlue"
+        :class="{blue: attachedBlue}"></div>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            attachedRed: false,
+            attachedGreen: false,
+            attachedBlue: false
+        }
+    });
+</script>
+
+<style>
+.demo {
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+    display: inline-block;
+    margin: 10px;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+.blue {
+    background-color: blue;
+}
+</style>
