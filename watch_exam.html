@@ -1,0 +1,38 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+  <button v-on:click="add">Increase</button>
+  <button v-on:click="sub">Decrease</button>
+  <p>Counter : {{ counter }}</p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            counter: 0
+        },
+        computed: {
+            output: function() {
+                console.log('Computed');
+                return this.counter;
+            }
+        },
+        methods: {
+            add: function() {
+                this.counter++;
+            },
+            sub: function() {
+                this.counter--;
+            }
+        },
+        watch: {
+            counter: function(newVal, oldVal) {
+                console.log('newVal : ' + newVal);
+                console.log('oldVal : ' + oldVal);
+                console.log(this.counter);
+                return this.counter;
+            }
+        }
+    });
+</script>
