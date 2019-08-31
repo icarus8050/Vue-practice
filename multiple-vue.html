@@ -1,8 +1,9 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <div id="app1">
-    <h1>{{ title }}</h1>
-    <button @click="show">Show Paragraph</button>
+    <h1 ref="heading" v-text="title"></h1>
+    <button @click="show" ref="myButton">Show Paragraph</button>
+    <input type="text" v-model="title">
     <p v-if="showParagraph">This is not always visible</p>
 </div>
 
@@ -18,10 +19,19 @@
             title: 'The VueJS Instance',
             showParagraph: false
         },
+        updated () {
+          console.log('updated');
+        },
+        mounted () {
+
+
+            console.log('mounted');
+        },
         methods: {
             show: function () {
                 this.showParagraph = true;
                 this.updateTitle('The VueJS Instance (Updated)');
+                this.$refs.myButton.innerText = 'Test';
             },
             updateTitle: function (title) {
                 this.title = title;
@@ -33,11 +43,19 @@
             }
         },
         watch: {
-            title: function (value) {
-                alert('Title changed, new value: ' + value);
+            title (v) {
+                console.log(v);
             }
         }
     });
+
+    vm1.$refs.heading.innerText = 'something else';
+
+
+    setTimeout(function() {
+        vm1.title = 'Change by Timer';
+        vm1.show();
+    }, 3000);
 
     var vm2 = new Vue({
         el: '#app2',
@@ -49,5 +67,5 @@
                 vm1.title = 'Changed!';
             }
         }
-    })
+    });
 </script>
