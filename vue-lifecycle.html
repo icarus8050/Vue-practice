@@ -1,0 +1,46 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <h1>{{ title }}</h1>
+    <button @click="title = 'changed'">UPdate Title</button>
+    <input type="text" v-model="title">
+    <button @click="destroy">Destroy</button>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            title: 'The VueJS Instance'
+        },
+        beforeCreate () {
+            console.log('beforeCreate()');
+        },
+        created() {
+            console.log('created()');
+        },
+        beforeMount() {
+            console.log('beforeMount()');
+        },
+        mounted() {
+            console.log('mounted()');
+        },
+        beforeUpdate() {
+            console.log('beforeUpdate()');
+        },
+        updated() {
+            console.log('updated()');
+        },
+        beforeDestroy() {
+            console.log('beforeDestroy()');
+        },
+        destroyed() {
+            console.log('destroyed()');
+        },
+        methods: {
+            destroy() {
+                this.$destroy();
+            }
+        }
+    });
+</script>
