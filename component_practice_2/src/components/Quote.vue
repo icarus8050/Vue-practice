@@ -1,6 +1,13 @@
 <template>
     <div>
-        <slot></slot>
+        <div class="title">
+            <slot name="title"></slot>
+            <span style="color: #ccc"><slot name="subtitle">The Subtitle</slot></span>
+        </div>
+        <hr>
+        <div>
+            <slot></slot>
+        </div>
     </div>
 </template>
 
@@ -17,5 +24,13 @@
         padding: 30px;
         margin: 30px auto;
         text-align: center;
+    }
+
+    h2 {
+        color: red;
+    }
+
+    .title {
+        font-style: italic;
     }
 </style>
