@@ -1,20 +1,15 @@
 <template>
     <div class="col-xs-12 col-sm-6">
         <ul class="list-group">
-            <li
-                    class="list-group-item"
-                    v-for="server in servers">
-                <div
-                        @click="submitStatus(server.status)">
-                    Server #{{ server.id }}
-                </div>
-            </li>
+            <app-server
+                v-for="server in servers"
+                :server="server"></app-server>
         </ul>
     </div>
 </template>
 
 <script>
-    import {eventBus} from '../../main'
+    import Server from './Server.vue'
 
     export default {
         data: function () {
@@ -27,10 +22,8 @@
                 ]
             }
         },
-        methods: {
-            submitStatus(status) {
-                eventBus.submitStatus(status)
-            }
+        components: {
+            appServer: Server
         }
     }
 </script>
