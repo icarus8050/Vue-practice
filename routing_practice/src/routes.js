@@ -19,12 +19,17 @@ export const routes = [
         },
         children: [
             {path: '', component: UserStart},
-            {path: ':id', component: UserDetail},
+            {
+                path: ':id', component: UserDetail, beforeEnter: (to, fron, next) => {
+                    console.log('inside rout setup');
+                    next();
+                }
+            },
             {path: ':id/edit', component: UserEdit, name: 'userEdit'}
         ]
     },
     {
-        path: '/redirect-me', redirect: { name: 'home' }
+        path: '/redirect-me', redirect: {name: 'home'}
     },
     {
         path: '*', redirect: '/'
